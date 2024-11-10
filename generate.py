@@ -20,7 +20,10 @@ def generate(args):
     img = qr.make_image(fill="black", back_color="white")
 
     # Save the image
-    img.save("basic_qr_code.png")
+    if args.o:
+        img.save(args.o)
+    else:
+        img.save("qr_code.png")
 
 
 if __name__ == "__main__":
