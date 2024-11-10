@@ -1,6 +1,9 @@
 import qrcode
+import argparse
 
-def generate(data):
+def generate(args):
+    data = args.data
+
     # Create the QR code object
     qr = qrcode.QRCode(
         version=1,  # QR version: controls the size, choose 1-40 (1 is the smallest)
@@ -21,8 +24,11 @@ def generate(data):
 
 
 if __name__ == "__main__":
-    # Data to encode
-    data = input("Enter the data to encode in the QR code: ")
-
+    # Parse the input
+    parser = argparse.ArgumentParser(description="Generate a QR code")
+    parser.add_argument("data", type=str, help="Data to encode in the QR code")
+    parser.add_argument("-o", metavar="output_file", help="Output file name")
+    args = parser.parse_args()
+    
     # Generate the QR code
-    generate(data)
+    generate(args)
